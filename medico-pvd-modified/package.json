@@ -1,0 +1,37 @@
+{
+  "name": "nuevasvoces_leaflet",
+  "version": "1.0.1",
+  "description": "Customize your Leaflet story map with linked Google Sheets template and scrolling narrative. Supports images, audio and video embeddings, and Leaflet TileLayer/geojson overlays.",
+  "main": "google-doc-url.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "env-cmd -f .env webpack --config webpack.config.js",
+    "build-prod": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DAAAAMNSocialJustice/NuevasVoces_leaflet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DAAAAMNSocialJustice/NuevasVoces_leaflet/issues"
+  },
+  "homepage": "https://github.com/DAAAAMNSocialJustice/NuevasVoces_leaflet#readme",
+  "dependencies": {
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "constants-browserify": "^1.0.0",
+    "dotenv": "^16.0.3",
+    "fs-extra": "^11.1.0",
+    "os-browserify": "^0.3.0",
+    "path": "^0.12.7",
+    "stream-browserify": "^3.0.0"
+  },
+  "devDependencies": {
+    "dotenv-webpack": "^8.0.1",
+    "env-cmd": "^10.1.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
