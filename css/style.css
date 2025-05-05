@@ -225,21 +225,26 @@ h2 {
 
 
 #search-bar {
-  position: fixed;
+  position: absolute;
+  top: 20px;
+  right: 20px;
   width: auto;
   z-index: 1000;
-  padding: 5px 0;
+  padding: 5px 2px;
   /* Adjust padding as needed */
   display: flex;
   /* Use Flexbox to align items horizontally */
-  justify-content: flex-start;
+  justify-content: flex-end;
   /* Align items to the left */
   align-items: center;
-  /* Center items vertically */
-  left: 0;
-  /* Align to the left side */
-  top: 5px;
   /* Add some top margin */
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  
 }
 
 .search-bar {
@@ -287,7 +292,7 @@ h2 {
 #magnifying {
   display: flex;
   align-items: center;
-  padding: 0 5px;
+  padding: 0 3px;
   cursor: pointer;
 
 }
@@ -295,11 +300,56 @@ h2 {
 #magnifying .fa-search {
   color: #2207ec;
   /* Darker color for better visibility */
-  font-size: 24px;
+  font-size: 20px;
   /* Increased icon size */
 }
 
 #magnifying .fa-search:hover {
   color: #000;
   /* Change color on hover for better feedback */
+}
+
+.highlighted {
+  background-color: #ffffff;
+  border-left: 4px solid #0077cc;
+  padding-left: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+  #search-bar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: calc(50vw - 30px); /* Full width minus margin */
+    padding: 8px 10px;
+    justify-content: flex-end;
+    flex-direction: row;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  #map{
+    height: 350px;
+  }
+
+  #box {
+    width: 100%;
+  }
+
+  #box input[type="text"] {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px 0 0 8px;
+  }
+
+  #magnifying {
+    padding: 0 8px;
+  }
+
+  #magnifying .fa-search {
+    font-size: 20px;
+  }
 }
