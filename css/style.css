@@ -1,66 +1,334 @@
+/* Base layout and typography */
 body {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   font-family: "Helvetica", sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
+/* Mobile-first layout */
+/* Search bar at top */
+#search-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ccc;
+  z-index: 1000;
+  box-sizing: border-box;
+  height: 60px;
+}
+
+/* Container for mobile layout to ensure proper spacing */
+body:before {
+  content: "";
+  display: block;
+  height: 60px; /* Same as search bar height */
+  width: 100%;
+}
+
+#box {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  width: calc(100% - 40px); /* Account for magnifying glass width */
+}
+
+#box input[type="text"] {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #444;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #444;
+  border-radius: 4px 0 0 4px;
+  box-sizing: border-box;
+}
+
+#magnifying {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+#magnifying .fa-search {
+  color: #2207ec;
+  font-size: 18px;
+}
+
+#magnifying .fa-search:hover {
+  color: #000;
+}
+
+/* Logo below search bar - MOVED DOWN with proper spacing */
+#logo {
+  position: relative;
+  padding: 0;
+  z-index: 100;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#logo img {
+  max-height: 50px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Title below logo with clear separation */
+#title {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 100;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+}
+
+#header {
+  padding: 10px 8px 20px 10px;
+  text-align: center;
+  color: #333;
+  width: 60%;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.3em;
+  line-height: 1.4;
+}
+
+h2 {
+  margin: 5px 0 0 0;
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+/* Map below title - MOVED DOWN with proper spacing */
 #map {
-  height: 200px;
+  position: relative;
+  margin-top: 10px;
+  height: 50vh;
+  width: 100%;
+  border-bottom: 3px solid orange;
+  z-index: 80;
+  clear: both;
+}
+
+/* Content area */
+#narration {
+  position: relative;
+  width: 100%;
+  z-index: 70;
+}
+
+#contents {
+  padding: 0;
+  width: 100%;
+  margin-top: 0;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
+/* Highlighted content */
+.highlighted {
+  background-color: #ffffff;
+  border-left: 4px solid #0077cc;
+  padding-left: 10px;
+}
+
+/* Desktop styles */
+@media screen and (min-width: 769px) {
+  body:before {
+    display: none; /* Remove spacing element on desktop */
+  }
+  
+  body {
+    overflow-y: hidden;
+  }
+  
+  /* Search bar at top right */
+  #search-bar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    left: auto;
+    width: auto;
+    height: auto;
+  }
+  
+  /* Map at the top */
+  #map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 250px;
+    margin-top: 0;
+  }
+  
+  /* Logo repositioned */
+  #logo {
+    position: absolute;
+    margin-top: 0;
+    top: 20px;
+    left: 20px;
+    padding: 0;
+    background-color: transparent;
+    width: auto;
+    display: block;
+  }
+  
+  /* Title repositioned */
+  #title {
+    position: absolute;
+    top: 100px;
+    left: 5px;
+    padding: 0;
+    background-color: transparent;
+    width: auto;
+    text-align: left;
+  }
+  
+  /* Content below map */
+  #narration {
+    position: absolute;
+    top: 5px;
+    width: 100vw;
+    height: 60%;
+  }
+  
+  #contents {
+    height: 80%;
+    overflow-y: scroll;
+  }
+  
+  #header {
+    padding: 0 15px;
+    text-align: left;
+  }
+}
+
+/* Map styling */
+#map {
+  height: 300px;
   width: 100vw;
   position: absolute;
   border-bottom: 3px solid orange;
   top: 0;
   left: 0;
+  z-index: 80;
 }
 
+/* Main narration area */
 #narration {
   position: absolute;
-  top: 203px;
+  top: 5px;
   width: 100vw;
-  height: calc(100vh - 203px);
+  height: 70%;
   z-index: 80;
 }
 
 #contents {
   padding: 0;
   width: 100%;
-  margin-top: 0; /*Adjust if Title header needs more space */
-  height: 100%; /* Adjust to fit max Description length, one setting for all; alternative is 100% */
+  margin-top: 0;
+  height: 70%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
 #top {
-  height: 40px;
+  height: 1px;
   margin: 0;
 }
 
 #space-at-the-bottom {
-  height: 200px;
+  height: 0px;
   margin: 0;
   text-align: center;
-  padding-top: 150px;
+  padding-top: 0px;
 }
 
+/* Title and logo */
 #title {
   position: absolute;
-  left: 0;
-  top: 203px;
+  left: 20px;
+  top: 80px;
   background-color: white;
-  width: 100vw;
-  z-index: 100;
+  width: auto;
+  z-index: 150;
   margin: 0;
   padding: 0;
-  visibility: hidden;
+  visibility: visible;
   font-weight: bold;
   font-style: italic;
-  text-align: center;
+  text-align: left;
+  transition: opacity 0.3s ease;
 }
 
+#logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 150;
+  padding: 0;
+  margin: 0;
+  max-width: 200px;
+  transform: none;
+  transition: opacity 0.3s ease;
+}
+
+#logo img {
+  max-height: 50px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0;
+}
+
+#header {
+  padding: 5px 0;
+  text-align: left;
+  color: #333;
+  margin-top: 10px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5em;
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+/* Chapter content */
 .chapter-container {
-  /* margin + padding = chapterContainerMargin in script.js */
-  /* Important for scrolling! */
   margin: 50px 0 0 0;
   padding: 20px 0 0 0;
   text-align: center;
@@ -73,8 +341,6 @@ body {
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-
-  /* Three lines that center vertically */
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -87,10 +353,12 @@ body {
   max-height: 200px;
   width: 100%;
 }
+
 .translate-title {
   margin-top: 1.5rem;
   font-style: italic;
 }
+
 .audio-container {
   margin: 0;
   margin-bottom: 5px;
@@ -99,27 +367,20 @@ body {
   width: 100%;
 }
 
-.chapter-header {
+.chapter-header, .chapter-address, .chapter-phone {
   display: block;
   text-align: center;
-  font-size: 1.2em;
   padding: 0 5px;
+}
+
+.chapter-header {
+  font-size: 1.2em;
   font-weight: 900;
   text-decoration: underline;
 }
 
-.chapter-address {
-  display: block;
-  text-align: center;
+.chapter-address, .chapter-phone {
   font-size: 1em;
-  padding: 0 2px;
-}
-
-.chapter-phone {
-  display: block;
-  text-align: center;
-  font-size: 1em;
-  padding: 0 2px;
 }
 
 .source {
@@ -127,6 +388,7 @@ body {
   font-style: italic;
   color: gray;
 }
+
 a.source:visited {
   color: grey;
 }
@@ -154,76 +416,11 @@ a.source:visited {
   opacity: 0.75;
 }
 
-/*
-  By default, current (active) marker is orange.
-  If you want to change the color, see options here: https://github.com/coryasilva/Leaflet.ExtraMarkers/blob/master/src/assets/css/leaflet.extra-markers.css
-*/
 .marker-active {
   background-position: -72px 0 !important;
 }
 
-/* Storymap logo image above the title */
-#logo {
-  height: 100px;
-  line-height: 30px;
-  text-align: center;
-  padding: 10px;
-  max-width: 100%;
-}
-
-#logo img {
-  max-height: 100%;
-  max-width: 100%;
-  vertical-align: middle;
-}
-
-#header {
-  padding: 5px 0;
-  text-align: center;
-  color: #333;
-}
-
-/* Storymap title & subtitle */
-h1 {
-  margin: 0;
-  font-size: 1.5em;
-}
-
-h2 {
-  margin: 0;
-  font-size: 1.1em;
-  font-weight: normal;
-}
-
-.listen {
-  display: flex;
-  margin: 1rem 0;
-  background: lightblue;
-  margin: 0 auto;
-  margin-top: 1rem;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 999999px;
-  cursor: pointer;
-  z-index: 999999999;
-  gap: 10px;
-  align-items: center;
-  font-weight: 900;
-}
-.listen:hover {
-  background: white;
-}
-.stop {
-  margin: 0.5rem 0;
-  z-index: 999999999;
-  cursor: pointer;
-  border: none;
-  text-decoration: underline;
-  font-weight: 600;
-  color: red;
-}
-
-
+/* Search bar styling */
 #search-bar {
   position: absolute;
   top: 20px;
@@ -231,62 +428,40 @@ h2 {
   width: auto;
   z-index: 1000;
   padding: 5px 2px;
-  /* Adjust padding as needed */
   display: flex;
-  /* Use Flexbox to align items horizontally */
   justify-content: flex-end;
-  /* Align items to the left */
   align-items: center;
-  /* Add some top margin */
   background-color: #f9f9f9;
   border-bottom: 1px solid #ccc;
   border-radius: 8px;
   margin-bottom: 40px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  
 }
 
 .search-bar {
   position: relative;
   display: flex;
-  /* Use Flexbox to align items horizontally */
   align-items: center;
-  /* Ensure elements are centered vertically */
   background-color: transparent;
-  /* Make background transparent */
   margin: 0;
-  /* Remove margin */
   padding: 0;
-  /* Remove padding */
 }
 
 #box {
   display: flex;
-  /* Use Flexbox to align items horizontally */
   align-items: center;
-  /* Ensure elements are centered vertically */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Add box-shadow */
 }
 
 #box input[type="text"] {
   flex: 1;
-  /* Take up remaining space */
   padding: 10px 15px;
-  /* Adjust padding for height and to reduce space */
   font-size: 18px;
-  /* Increased font size */
   border: none;
-  /* Remove all borders */
   border-bottom: 2px solid #444;
-  /* Add bottom border */
   background-color: rgba(255, 255, 255, 0.8);
-  /* Slightly transparent background */
   color: #444;
-  /* Text color */
   border-radius: 4px 0 0 4px;
-  /* Rounded corners on the left side */
 }
 
 #magnifying {
@@ -294,19 +469,15 @@ h2 {
   align-items: center;
   padding: 0 3px;
   cursor: pointer;
-
 }
 
 #magnifying .fa-search {
   color: #2207ec;
-  /* Darker color for better visibility */
   font-size: 20px;
-  /* Increased icon size */
 }
 
 #magnifying .fa-search:hover {
   color: #000;
-  /* Change color on hover for better feedback */
 }
 
 .highlighted {
@@ -315,23 +486,107 @@ h2 {
   padding-left: 10px;
 }
 
-
+/* Responsive layout */
 @media screen and (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    padding-top: calc(60px + 45vh); /* Reduced from 50vh to 45vh */
+  }
+  
+  #logo {
+    left: 10px;
+    max-width: 150px;
+    position: fixed;
+    top: 64px; /* Reduced from 70px to 64px (60px search bar + 4px spacing) */
+    z-index: 80;
+    transition: all 0.3s ease;
+    margin-bottom: 4px; /* Added small margin below logo */
+  }
+  
+  #title {
+    left: 10px;
+    top: 114px; /* Reduced from 120px to 114px (64px logo + 4px margin + 46px logo height) */
+    position: fixed;
+    z-index: 80;
+    transition: all 0.3s ease;
+    margin-top: 4px; /* Added small margin above title */
+  }
+  
+  #logo img {
+    max-height: 46px; /* Slightly reduced from 50px */
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0;
+  }
+
+  #map {
+    position: fixed;
+    height: 45vh;
+    top: 20px; 
+    left: 0;
+    right: 0;
+    z-index: 100;
+    margin-top: 0;
+    transition: all 0.3s ease;
+  }
+
+  #header {
+    padding: 4px 0; /* Reduced padding */
+    text-align: left;
+    color: #333;
+    margin-top: 4px; /* Reduced margin */
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.3em;
+    line-height: 1.2;
+  }
+
+  h2 {
+    margin: 4px 0 0 0; /* Reduced margin */
+    font-size: 1em;
+    font-weight: normal;
+    line-height: 1.2;
+  }
+
+  /* Rest of the mobile styles remain the same */
+  #narration {
+    position: relative;
+    top: 0;
+    height: auto;
+    z-index: 80;
+  }
+
   #search-bar {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: calc(50vw - 30px); /* Full width minus margin */
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
     padding: 8px 10px;
     justify-content: flex-end;
     flex-direction: row;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 0;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 1000;
   }
 
-  #map{
-    height: 350px;
+  /* When scrolling, adjust elements to go behind map */
+  .scrolled #logo,
+  .scrolled #title,
+  .scrolled #narration {
+    z-index: 80;
+    opacity: 0.3;
+  }
+
+  /* Map always stays on top */
+  #map {
+    position: fixed;
+    z-index: 100;
+    opacity: 1;
   }
 
   #box {
@@ -352,4 +607,122 @@ h2 {
   #magnifying .fa-search {
     font-size: 20px;
   }
+}
+
+@media screen and (min-width: 769px) {
+  #map {
+    margin-top: 0;
+    height: 40vh;
+  }
+}
+
+#searchbar-spacer {
+  width: 100%;
+  height: 1px; 
+  display: block;
+}
+
+@media screen and (min-width: 769px) {
+  #searchbar-spacer {
+    display: none;
+  }
+  .logo-title-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 40%;
+    background: white;
+    padding: 0 0 0 10px;
+    box-sizing: border-box;
+    margin-top: 0px;
+    margin-bottom: 0;
+  }
+  #logo {
+    position: static;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    width: auto;
+    display: block;
+    flex: 0 0 auto;
+  }
+  #logo img {
+    max-height: 50px;
+    margin: 0;
+  }
+  #title {
+    position: static;
+    padding: 0 0 0 20px;
+    margin: 0;
+    background-color: transparent;
+    width: auto;
+    text-align: left;
+    display: block;
+    flex: 1 1 auto;
+  }
+  #header {
+    padding: 0;
+    text-align: left;
+  }
+}
+
+.logo-title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  background: white;
+  padding: 0 0 0 3px;
+  box-sizing: border-box;
+  margin-top: 0; /* Space below search bar */
+  margin-bottom: 0;
+}
+
+#logo {
+  position: static;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  width: auto;
+  display: block;
+  flex: 0 0 auto;
+}
+
+#logo img {
+  max-height: 50px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0;
+}
+
+#title {
+  position: static;
+  padding: 0 0 0 12px;
+  margin: 0;
+  background-color: transparent;
+  width: auto;
+  text-align: left;
+  display: block;
+  flex: 1 1 auto;
+}
+
+#header {
+  padding: 0;
+  text-align: left;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 769px) {
+  .logo-title-row {
+    width: 40%;
+    padding: 0 0 0 0;
+    margin-top: 5px;
+  }
+}
+
+#main-content {
+  margin-top: 20px; /* search bar + map height */
 }

@@ -60,19 +60,24 @@
       </div>
     </div> 
 
-    <div id="title">
+    <div id="searchbar-spacer"></div>
+    <div class="logo-title-row">
       <div id="logo"></div>
-      <div id="header"></div>
+      <div id="title">
+        <div id="header"></div>
+      </div>
     </div>
+
+    <div id="map"></div>
 
     <div id="narration">
       <div id="contents">
-        <div id="top"></div>
+        <div id="top" style="height: 10px;"></div>
       </div>
     </div>
 
     <div class="loader">Loading...</div>
-    <div id="map"></div>
+   
     
 
     <div id="contents">
@@ -86,6 +91,20 @@
         zoomControl: false,
         tap: false,
       });
+
+      // Check and adjust layout on load and resize
+      function adjustLayout() {
+        if (window.innerWidth <= 768) {
+          // Ensure proper stacking on mobile
+          document.getElementById("logo").style.display = "block";
+          document.getElementById("title").style.display = "block";
+        }
+      }
+      
+      // Run on page load and window resize
+      window.addEventListener("load", adjustLayout);
+      window.addEventListener("resize", adjustLayout);
+
     </script>
 
     <!-- <script type="text/javascript" src="google-doc-url.js"></script> -->

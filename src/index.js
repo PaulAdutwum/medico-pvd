@@ -718,6 +718,17 @@ $(window).on("load", function () {
       gtag("js", new Date());
       gtag("config", ga);
     }
+
+    // Add scroll handler for mobile
+    $(window).on('scroll', function() {
+      if (window.innerWidth <= 768) {
+        if ($(window).scrollTop() > 20) { // Reduced threshold for faster response
+          $('body').addClass('scrolled');
+        } else {
+          $('body').removeClass('scrolled');
+        }
+      }
+    });
   }
 
   /**
